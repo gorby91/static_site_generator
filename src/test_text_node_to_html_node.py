@@ -24,8 +24,8 @@ class TestTextNodetoHTMLNode(unittest.TestCase):
 
 text1_node = text_node_to_html_node(TextNode("This is bold text", "bold"))
 leaf1_node = LeafNode("b", "This is bold text")
-text2_node = text_node_to_html_node(TextNode("This is normal text", "normal"))
-leaf2_node = LeafNode(None, value="This is normal text")
+text2_node = text_node_to_html_node(TextNode("This is just text", "text"))
+leaf2_node = LeafNode(None, value="This is just text")
 text3_node = text_node_to_html_node(TextNode("This is italicised text", "italic"))
 leaf3_node = LeafNode("i", "This is italicised text")
 text4_node = text_node_to_html_node(TextNode("This is a code block", "code"))
