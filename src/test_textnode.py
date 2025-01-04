@@ -10,8 +10,8 @@ class TestTextNode(unittest.TestCase):
         node3 = TextNode("This is also a text node", TextType.LINK, "www.google.com")
         node4 = TextNode("This is also a text node", TextType.LINK, "www.google.com")
         self.assertEqual(node3, node4)
-        node5 = TextNode("", TextType.NORMAL, None)
-        node6 = TextNode("", TextType.NORMAL)
+        node5 = TextNode("", TextType.TEXT, None)
+        node6 = TextNode("", TextType.TEXT)
         self.assertEqual(node5, node6)
     def test_empty_url(self):
         node7 = TextNode("This is a not equal test", TextType.CODE, "")
@@ -22,8 +22,8 @@ class TestTextNode(unittest.TestCase):
         node10 = TextNode("Testing different texttypes", TextType.IMAGE)
         self.assertNotEqual(node9, node10)
     def test_different_urls(self):
-        node11 = TextNode("Testing different urls", TextType.NORMAL, "https://www.google.com.au/")
-        node12 = TextNode("Testing different urls", TextType.NORMAL, "http://www.google.com.au/")
+        node11 = TextNode("Testing different urls", TextType.TEXT, "https://www.google.com.au/")
+        node12 = TextNode("Testing different urls", TextType.TEXT, "http://www.google.com.au/")
 
 if __name__ == "__main__":
     unittest.main()
