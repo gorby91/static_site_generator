@@ -3,7 +3,7 @@ from leafnode import LeafNode
 
 class TextType(Enum):
     BOLD = "bold"
-    TEXT  = "normal"
+    TEXT  = "text"
     ITALIC = "italic"
     CODE = "code"
     LINK = "link"
