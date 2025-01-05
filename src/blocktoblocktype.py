@@ -4,19 +4,19 @@ from markdowntoblocks import markdown_to_blocks
 
 def block_to_block_type(block: str) -> str:
     if check_header(block):
-        return "head"
+        return "heading"
     if check_code(block):
         return "code"
     # divide lines for following tests to be performed 
     lines = block.splitlines()
     if check_blockquote(lines):
-        return "blockquote"
+        return "quote"
     if check_unordered_list(lines):
-        return "ul"
+        return "unordered_list"
     if check_ordered_list(lines):
-        return "ol"
+        return "ordered_list"
     else:
-        return "body"
+        return "paragraph"
     
 
 def check_header(block: str) -> bool:

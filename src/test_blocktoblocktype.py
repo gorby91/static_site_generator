@@ -6,11 +6,11 @@ class TestBlockToBlockType(unittest.TestCase):
     def test_header(self):
        test_header = ["#### test", "# test", "###### test"]
        for test in test_header:
-           self.assertEqual(block_to_block_type(test), "head")
+           self.assertEqual(block_to_block_type(test), "heading")
     def test_not_header(self):
         test_notheader = ["####### test", "##test", "test ##"] 
         for test in test_notheader:
-            self.assertNotEqual(block_to_block_type(test), "head")
+            self.assertNotEqual(block_to_block_type(test), "heading")
     def test_code(self):
         test_code = [codetest1, codetest2]
         for test in test_code:
@@ -22,19 +22,19 @@ class TestBlockToBlockType(unittest.TestCase):
     def test_quoteblock(self):
         test_quoteblock = [quotetest1, quotetest2, quotetest3]
         for test in test_quoteblock:
-            self.assertEqual(block_to_block_type(test), "blockquote")
+            self.assertEqual(block_to_block_type(test), "quote")
     def test_not_quoteblock(self):
-        self.assertNotEqual(block_to_block_type(quotetest4), "blockquote")
+        self.assertNotEqual(block_to_block_type(quotetest4), "quote")
     def test_unordered_list(self):
         test_ul = [ultest1, ultest2]
         for test in test_ul:
-            self.assertEqual(block_to_block_type(test), "ul")
+            self.assertEqual(block_to_block_type(test), "unordered_list")
     def test_ordered_list(self):
         test_ol = [oltest1, oltest2]
         for test in test_ol:
-            self.assertEqual(block_to_block_type(test), "ol")
+            self.assertEqual(block_to_block_type(test), "ordered_list")
     def test_not_ordered_list(self):
-        self.assertNotEqual(block_to_block_type(oltest3), "ol")
+        self.assertNotEqual(block_to_block_type(oltest3), "ordered_list")
         
         
 

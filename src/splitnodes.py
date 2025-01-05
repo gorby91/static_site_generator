@@ -2,7 +2,7 @@ from extract import extract_markdown_images, extract_markdown_links
 from textnode import TextNode, TextType
 import re
 
-def split_nodes_image(old_nodes):
+def split_nodes_image(old_nodes: list) -> list:
     new_nodes = []
     pattern = r"!\[[^\[\]]*\]\([^\(\)]*\)"
     for node in old_nodes:
@@ -19,7 +19,7 @@ def split_nodes_image(old_nodes):
     return new_nodes
             
 
-def split_nodes_link(old_nodes):
+def split_nodes_link(old_nodes: list) -> list:
     new_nodes = []
     pattern = r"(?<!!)\[[^\[\]]*\]\([^\(\)]*\)"
     for node in old_nodes:

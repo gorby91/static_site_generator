@@ -1,7 +1,6 @@
-from textnode import TextNode
+from textnode import TextNode, TextType
 
-
-def split_nodes_delimiter(old_nodes, delimiter, text_type):
+def split_nodes_delimiter(old_nodes: list, delimiter: str, text_type: TextType) -> list:
     new_nodes = []
     for node in old_nodes:
         if node.text.count(delimiter) == 0:
