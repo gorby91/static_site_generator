@@ -52,8 +52,7 @@ def check_unordered_list(lines: list) -> bool:
 def check_ordered_list(lines: list) -> bool:
      # check if ordered list by looping over lines to check if each line starts with an incrementing value
     for i, line in enumerate(lines):
-        startvalue = f"{i + 1}. "
-        start_true = line.startswith(startvalue)
+        start_true = line.startswith(f"{i + 1}. ")
         if not start_true:
             break
     return start_true
