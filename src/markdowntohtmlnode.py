@@ -21,29 +21,45 @@ def markdown_to_html_node(markdown: str) -> ParentNode:
         # convert list of textnodes to html nodes
         block_children = list(map(text_node_to_html_node, block_textnodes))
         # create a parent node for the block
-        block_parent = ParentNode(tag=blocktype, children=block_children)
-        full_nodelist.append(ParentNode)
-    parent = ParentNode(tag="div", children=full_nodelist)
+        block_parent = ParentNode(tag=blocktag, children=block_children)
+        full_nodelist.append(block_parent)
+    return ParentNode(tag="div", children=full_nodelist)
 
 
 def format_htmlblock(blocktype: str, block:str) -> tuple:
-    if blocktype is "heading":
-        content = re.search(r"^\#{1,6} (.*)$")
-        return "head", content.group(1)
-    if blocktype is "code":
-        return "code", block[3:-3]
+    if blocktype == "heading":
+        return format_heading_block(block)
+    if blocktype == "code":
+        return format_code_block(block)
+    if blocktype == "ordered_list":
+        return format_ordered_list_block(block)    
     lines = block.splitlines()
-    if blocktype is "quote":
-        extracted_quote = "\n".join(map(lambda line: line[1:], lines))
-        return "blockquote", extracted_quote
-    if blocktype is "unordered_list":
-        labelled_list = "\n".join(map(lambda line: line[2:], lines))
-        return "ul", labelled_list
-    if blocktype is "ordered_list":
-        content = re.search(r"^\d*\. (.*)$") 
-        return_list = []
-        for i, line in enumerate(content):
-            return_list.append(f"<li>{content.group(i+1)}</li>")
-            return "ol", "\n".join(return_list)
+    if blocktype == "quote":
+        return format_quote_block(lines)
+    if blocktype == "unordered_list":
+        return format_unordered_list_block(lines)
     else:
         return "p", block
+    
+def format_heading_block(block):
+    content = re.search(r"^(\#{1,6}) (.*)$", block)
+    head_tag = f"h{len(content.group(1))}"
+    return head_tag, content.group(2)
+
+def format_code_block(block):
+    return "code", block[3:-3]
+
+def format_quote_block(lines):
+    extracted_quote = "\n".join(map(lambda line: line[1:], lines))
+    return "blockquote", extracted_quote
+
+def format_unordered_list_block(lines):
+    labelled_list = "".join(map(lambda line: f"<li>{line[2:]}</li>", lines))
+    return "ul", labelled_list
+
+def format_ordered_list_block(lines):
+    return_list = []
+    for i, line in enumerate(lines):
+        content = re.search(r"^\d*\. (.*)$", line) 
+        return_list.append(f"<li>{content.group(1)}</li>")
+    return "ol", "".join(return_list)
