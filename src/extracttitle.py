@@ -1,6 +1,6 @@
 
 
-def extract_title(markdown):
+def extract_title(markdown: str) -> str:
     lines = markdown.splitlines()
     for line in lines:
         if line[:2] == "# ":
