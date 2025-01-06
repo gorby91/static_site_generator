@@ -21,4 +21,3 @@ class ParentNode(HTMLNode):
                 ""
                 )
             }</{self.tag}>"
-

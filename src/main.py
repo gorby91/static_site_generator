@@ -1,8 +1,12 @@
 from textnode import TextNode
+from copyfiles import copy_files
+
+
 
 def main():
-    node = TextNode("This is a text node", "bold", "https://www.boot.dev")
-    print(node)
+    copy_files("./static", "./public")
+
+
 
 if __name__ == "__main__":
     main()

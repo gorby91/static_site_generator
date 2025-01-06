@@ -2,24 +2,17 @@ import os
 import shutil
 
 def copy_files(source_folder, destination_folder):
-    # delete all the contents of the destination (public) directory
+    # delete all the contents of the destination folder
     if os.path.exists(destination_folder):
-        pre_deletion_folders = list(map(lambda file: f"{destination_folder}/{file}", os.listdir(destination_folder)))
-        print(f"{destination_folder} contains {pre_deletion_folders}")
         shutil.rmtree(destination_folder)
-        if not os.path.exists(destination_folder):
-            print(f"{destination_folder} deleted")
+    # create clean copy of the destination folder
     os.mkdir(destination_folder)
-    if os.path.exists(destination_folder):
-        print(f"Clean copy of {destination_folder} restored")
+    # call the recursive copier function to copy the source directory tree across
     copier(source_folder, destination_folder)
-   
-    # copy all files, subdirectories, nested files, etc
-    # log the path of each file coipied so you can see what is happening
+
 
 def copier(source_folder, destination_folder):
     source_contents = os.listdir(source_folder)
-    source_contents_paths = []
     for obj in source_contents:
         obj_src_path = os.path.join(source_folder, obj)
         if os.path.isfile(obj_src_path):
