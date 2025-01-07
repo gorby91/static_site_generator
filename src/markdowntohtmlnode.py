@@ -50,7 +50,7 @@ def format_code_block(block):
     return "code", block[3:-3]
 
 def format_quote_block(lines):
-    extracted_quote = "\n".join(map(lambda line: line[1:], lines))
+    extracted_quote = "\n".join(map(lambda line: line[1:].lstrip(), lines))
     return "blockquote", extracted_quote
 
 def format_unordered_list_block(lines):
