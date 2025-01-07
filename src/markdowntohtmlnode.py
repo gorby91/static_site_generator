@@ -31,13 +31,13 @@ def format_htmlblock(blocktype: str, block:str) -> tuple:
         return format_heading_block(block)
     if blocktype == "code":
         return format_code_block(block)
-    if blocktype == "ordered_list":
-        return format_ordered_list_block(block)    
     lines = block.splitlines()
     if blocktype == "quote":
         return format_quote_block(lines)
     if blocktype == "unordered_list":
         return format_unordered_list_block(lines)
+    if blocktype == "ordered_list":
+        return format_ordered_list_block(lines)    
     else:
         return "p", block
     
